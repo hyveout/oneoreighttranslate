@@ -1,0 +1,1518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>YŌKAI CONTAINMENT BUREAU · ONE OR EIGHT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#E7E0CE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Abril+Fatface&family=Special+Elite&family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E7E0CE;
+  --paper-2:#DCD3BD;
+  --paper-3:#CFC5AC;
+  --ink:#15120E;
+  --ink-2:#3B342A;
+  --ink-3:#6B6153;
+  --red:#A93226;
+  --rule:rgba(21,18,14,.82);
+  --rule-soft:rgba(21,18,14,.28);
+  --grain:.42;
+  --disp:"Anton",Impact,sans-serif;
+  --mast:"Abril Fatface",Georgia,serif;
+  --mono:"Special Elite","Courier New",monospace;
+  --jp:"Shippori Mincho B1","Yu Mincho",serif;
+  --jpg:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#CFC7B2;--paper-2:#C2B9A1;--paper-3:#B4AA90;--grain:.5;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#CFC7B2;--paper-2:#C2B9A1;--paper-3:#B4AA90;--grain:.5;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--paper);color:var(--ink)}
+body{
+  font-family:var(--mono);
+  min-height:100dvh;
+  overflow-x:hidden;
+  position:relative;
+  -webkit-font-smoothing:antialiased;
+}
+/* paper grain */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:var(--grain);mix-blend-mode:multiply;
+}
+/* faint print misregistration */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:8999;
+  background:
+    radial-gradient(ellipse at 15% 8%,rgba(169,50,38,.05),transparent 55%),
+    radial-gradient(ellipse at 88% 92%,rgba(21,18,14,.09),transparent 60%);
+}
+.halftone{position:relative}
+.halftone::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle at 1px 1px,rgba(21,18,14,.16) 1px,transparent 1.5px);
+  background-size:3.5px 3.5px;mix-blend-mode:multiply;
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+img{max-width:100%;display:block}
+
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 16px}
+.rule{border-top:2px solid var(--rule)}
+.rule-d{border-top:4px double var(--rule)}
+.tag{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  font-family:var(--disp);letter-spacing:.14em;font-size:11px;
+  padding:3px 9px 2px;text-transform:uppercase;
+}
+.tag-o{
+  display:inline-block;border:1.5px solid var(--rule);
+  font-family:var(--disp);letter-spacing:.14em;font-size:11px;
+  padding:2px 8px;text-transform:uppercase;
+}
+
+/* ══════════ STAMPS ══════════ */
+.stamp{
+  font-family:var(--disp);color:var(--red);border:3px solid var(--red);
+  padding:5px 12px 3px;letter-spacing:.1em;display:inline-block;
+  opacity:.82;transform:rotate(-7deg);
+  mix-blend-mode:multiply;white-space:nowrap;
+}
+.stamp.sq{border-width:2px;transform:rotate(3deg)}
+.stamp.ink{color:var(--ink);border-color:var(--ink);opacity:.62}
+
+/* ══════════ SCREENS ══════════ */
+.screen{display:none;min-height:100dvh;flex-direction:column}
+.screen.on{display:flex}
+
+/* ══════════ 1 · INTAKE ══════════ */
+#intake .wrap{max-width:720px;padding-bottom:30px}
+.top-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 0 8px;border-bottom:2px solid var(--rule);
+  font-family:var(--disp);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+}
+.top-bar .jp{font-family:var(--jpg);font-weight:700;letter-spacing:.26em}
+.mark{width:52px;margin:16px auto 0;opacity:.92}
+.mark img{width:100%;mix-blend-mode:multiply}
+h1.big{
+  font-family:var(--disp);text-transform:uppercase;text-align:center;
+  font-size:clamp(42px,14vw,104px);line-height:.83;letter-spacing:-.022em;
+  margin-top:12px;
+}
+h1.big em{font-style:normal;display:block;color:var(--red)}
+.big-jp{
+  font-family:var(--jp);font-weight:800;text-align:center;
+  font-size:clamp(11px,3.1vw,15px);letter-spacing:.36em;text-indent:.36em;
+  margin-top:11px;
+}
+.hero-photo{
+  margin:26px auto 0;max-width:540px;
+  border:2px solid var(--rule);padding:6px;background:var(--paper-2);
+}
+.hero-photo .fr{
+  position:relative;overflow:hidden;aspect-ratio:1/1;border:1px solid var(--rule-soft);
+}
+.hero-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  mix-blend-mode:multiply;
+}
+.hero-cap{
+  display:flex;justify-content:space-between;gap:8px;margin-top:6px;
+  font-family:var(--disp);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.68;
+}
+.pitch{
+  font-family:var(--disp);text-transform:uppercase;text-align:center;
+  font-size:clamp(14px,3.7vw,22px);line-height:1.15;letter-spacing:.005em;
+  margin:18px auto 0;max-width:520px;
+  padding-top:14px;border-top:4px double var(--rule);
+}
+.pitch b{color:var(--red);font-weight:inherit}
+
+.cta-row{padding:20px 0 6px;text-align:center}
+.btn{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  font-family:var(--disp);letter-spacing:.17em;text-transform:uppercase;
+  font-size:clamp(16px,4.4vw,22px);padding:17px 36px 15px;
+  border:2px solid var(--ink);box-shadow:6px 6px 0 var(--red);
+  transition:transform .09s,box-shadow .09s;
+}
+.btn:active{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--red)}
+.btn.ghost{background:none;color:var(--ink);box-shadow:4px 4px 0 var(--rule-soft)}
+.btn.sm{font-size:13px;padding:11px 18px 9px;box-shadow:4px 4px 0 var(--red);letter-spacing:.12em}
+.cta-note{font-family:var(--mono);font-size:12px;margin-top:13px;opacity:.7;line-height:1.5}
+.footline{
+  font-family:var(--disp);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  text-align:center;padding:12px 0;border-top:4px double var(--rule);margin-top:14px;
+}
+@media(max-width:420px){ .btn{padding:16px 24px 14px} .footline{font-size:8.5px;letter-spacing:.1em} }
+
+/* ══════════ 1.5 · REEL ══════════ */
+#reel{background:#0b0a09;justify-content:center;align-items:center;padding:0}
+#reel .rwrap{width:100%;max-width:1100px;padding:0 12px}
+.reel-bar{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--disp);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--paper);opacity:.72;padding:0 2px 8px;
+}
+.reel-bar .sp{margin-left:auto}
+.reel-frame{border:2px solid rgba(231,224,206,.5);position:relative;background:#000;overflow:hidden}
+.reel-frame video{width:100%;height:auto;display:block}
+.reel-cap{
+  display:flex;justify-content:space-between;gap:8px;padding:7px 2px 0;
+  font-family:var(--disp);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--paper);opacity:.6;
+}
+.reel-skip{
+  font-family:var(--disp);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--paper);border:1.5px solid rgba(231,224,206,.55);padding:7px 14px 6px;
+}
+.reel-prog{height:2px;background:rgba(231,224,206,.2);margin-top:8px}
+.reel-prog i{display:block;height:100%;width:0;background:var(--red)}
+@media(max-width:520px){ .reel-bar{font-size:8.5px;letter-spacing:.12em} }
+
+/* ══════════ 2 · INTERROGATION ══════════ */
+#interro .wrap{padding-top:10px;padding-bottom:48px}
+.io-bar{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:8px 0 7px;border-bottom:2px solid var(--rule);
+  font-family:var(--disp);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+}
+.io-bar .sp{margin-left:auto}
+.rec{color:var(--red)}
+.rec b{display:inline-block;width:7px;height:7px;background:var(--red);border-radius:50%;animation:bl 1.15s steps(2,end) infinite;vertical-align:1px;margin-right:5px}
+@keyframes bl{0%,50%{opacity:1}51%,100%{opacity:.12}}
+
+.board{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:2px solid var(--rule);border-top:none;
+}
+@media(min-width:760px){ .board{grid-template-columns:repeat(8,1fr)} }
+.cell{
+  border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);
+  padding:6px 6px 7px;min-height:70px;position:relative;overflow:hidden;
+  background:var(--paper-2);
+}
+.cell:nth-child(4n){border-right:none}
+@media(min-width:760px){
+  .cell{border-bottom:none}
+  .cell:nth-child(4n){border-right:1.5px solid var(--rule)}
+  .cell:nth-child(8n){border-right:none}
+}
+.cell .cn{
+  font-family:var(--disp);font-size:9px;letter-spacing:.12em;opacity:.55;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cell .cv{
+  font-family:var(--mono);font-size:10.5px;line-height:1.3;margin-top:5px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.cell .bar{display:block;height:9px;background:var(--ink);margin-top:5px;opacity:.88}
+.cell .bar.w2{width:78%}.cell .bar.w3{width:56%}
+.cell.done{background:var(--paper)}
+.cell.done .cn{opacity:.8}
+.cell.live{background:var(--ink);color:var(--paper)}
+.cell.live .cn{opacity:.85}
+.cell.live .bar{background:var(--paper);opacity:.35}
+
+.sheet{
+  background:var(--paper);border:2px solid var(--rule);border-top:none;
+  padding:22px 18px 24px;position:relative;
+}
+@media(min-width:760px){ .sheet{padding:30px 34px 32px} }
+.sheet-hd{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  font-family:var(--disp);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  padding-bottom:9px;border-bottom:2px solid var(--rule);margin-bottom:18px;
+}
+.sheet-hd .r{text-align:right}
+.q-no{font-family:var(--disp);font-size:11px;letter-spacing:.2em;color:var(--red);margin-bottom:7px}
+.q-txt{
+  font-family:var(--disp);font-size:clamp(21px,5.3vw,38px);line-height:1.06;
+  text-transform:uppercase;letter-spacing:-.005em;min-height:1.1em;
+}
+.q-jp{font-family:var(--jpg);font-weight:700;font-size:12.5px;letter-spacing:.08em;margin-top:9px;opacity:.7}
+.q-cur{display:inline-block;width:.52em;height:.86em;background:var(--ink);vertical-align:-2px;animation:bl .8s steps(2,end) infinite}
+
+/* evidence strip */
+.ev{margin:0 auto 20px;display:none;max-width:min(100%,calc(44vh * 16 / 9))}
+.ev.on{display:block}
+.ev-frame{border:2px solid var(--rule);padding:5px;background:var(--paper-2);position:relative}
+.ev-frame .in{position:relative;overflow:hidden;aspect-ratio:16/9;border:1px solid var(--rule-soft);background:#0b0a09}
+.ev-frame video{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.26) contrast(1.06)}
+.ev-frame .in::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);}
+.ev-cap{
+  display:flex;justify-content:space-between;gap:8px;margin-top:5px;
+  font-family:var(--disp);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.65;
+}
+.ev-cap .rr{color:var(--red)}
+
+.opts{list-style:none;margin-top:22px;border-top:2px solid var(--rule)}
+.opt{
+  display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;
+  padding:14px 10px 13px;border-bottom:1.5px solid var(--rule-soft);
+  font-family:var(--mono);font-size:14.5px;line-height:1.42;
+  transition:background .1s,padding-left .1s;
+}
+.opt:hover{background:var(--paper-2);padding-left:16px}
+.opt:active{background:var(--paper-3)}
+.opt .ot{flex:1;min-width:0}
+.opt .oj{
+  display:block;font-family:var(--jpg);font-weight:500;
+  font-size:11.5px;letter-spacing:.04em;line-height:1.45;
+  opacity:.58;margin-top:3px;
+}
+.opt .k{
+  font-family:var(--disp);font-size:12px;letter-spacing:.1em;flex:none;
+  border:1.5px solid var(--rule);width:24px;height:24px;display:grid;place-items:center;
+  margin-top:1px;
+}
+.opt:hover .k{background:var(--ink);color:var(--paper)}
+.sheet-ft{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin-top:18px;padding-top:11px;border-top:2px solid var(--rule);
+  font-family:var(--disp);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.62;
+}
+.back{
+  font-family:var(--disp);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.75;display:inline-flex;align-items:center;gap:7px;
+}
+.back span{text-decoration:underline;text-underline-offset:3px}
+.back i{
+  width:0;height:0;display:block;flex:none;
+  border-right:7px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;
+}
+
+/* ══════════ 3 · REPORT ══════════ */
+#report{background:var(--paper-3)}
+#report .wrap{padding-top:22px;padding-bottom:46px;max-width:740px}
+.file{
+  background:var(--paper);border:1.5px solid var(--rule);
+  box-shadow:0 2px 0 rgba(21,18,14,.22),0 14px 40px rgba(21,18,14,.28);
+  padding:22px 18px 30px;position:relative;text-align:center;
+}
+@media(min-width:760px){ .file{padding:32px 44px 40px} }
+.punch{display:flex;gap:6px;justify-content:center;margin-bottom:14px}
+.punch i{width:34px;height:7px;background:var(--rule-soft);display:block}
+.file-hd{
+  font-family:var(--disp);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  opacity:.7;line-height:1.9;padding-bottom:12px;border-bottom:3px solid var(--rule);
+}
+.file-hd b{font-weight:400;color:var(--red)}
+.cc-lab{
+  font-family:var(--disp);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--red);text-indent:.24em;
+}
+.hero-name{
+  font-family:var(--disp);text-transform:uppercase;line-height:.86;letter-spacing:-.015em;
+  font-size:clamp(42px,12vw,86px);margin-top:12px;
+}
+.cc-jp{font-family:var(--jp);font-weight:800;letter-spacing:.2em;text-indent:.2em;font-size:clamp(17px,4.4vw,26px);margin-top:9px}
+.cc-trait{
+  font-family:var(--disp);font-size:clamp(12px,3.2vw,16px);letter-spacing:.14em;
+  text-transform:uppercase;margin-top:14px;
+}
+.cc-desc{
+  font-family:var(--mono);font-size:13.5px;line-height:1.66;margin:13px auto 0;max-width:500px;
+}
+.pair{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:24px;align-items:start;
+}
+.pair .pf{min-width:0}
+.pair .photo{width:100%;max-width:230px;margin:12px auto 0}
+.pair .hero-name{font-size:clamp(22px,6.4vw,40px);margin-top:14px}
+.pair .cc-jp{font-size:clamp(13px,3.4vw,18px);margin-top:6px}
+.pair-meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;
+  padding-top:18px;border-top:1.5px solid var(--rule-soft);
+}
+.pair-meta .cc-desc{margin-top:8px;font-size:12.5px;line-height:1.55}
+.pair-meta .cc-trait{margin-top:0}
+.pair-meta .cc-meta{margin-top:0}
+@media(max-width:560px){
+  .pair{gap:10px}
+  .pair .cc-lab{font-size:9px;letter-spacing:.16em}
+  .pair-meta{grid-template-columns:1fr;gap:14px}
+}
+.cc-desc-jp{
+  font-family:var(--jpg);font-weight:500;font-size:12px;line-height:1.65;
+  opacity:.6;margin-top:8px;letter-spacing:.02em;
+}
+.pitch-jp{
+  font-family:var(--jpg);font-weight:500;text-align:center;
+  font-size:clamp(11.5px,3.1vw,14px);line-height:1.7;opacity:.72;
+  max-width:520px;margin:10px auto 0;padding:0 8px;
+}
+.btn .btn-jp{display:block;font-family:var(--jpg);font-weight:700;font-size:.62em;
+  letter-spacing:.2em;margin-top:4px;opacity:.8;text-transform:none}
+.cta-note .note-jp{display:block;font-family:var(--jpg);margin-top:3px}
+.bar-jp{font-family:var(--jpg);font-weight:700;letter-spacing:.1em;margin-left:6px;opacity:.85}
+.share-sub-jp{font-family:var(--jpg);font-size:12px;line-height:1.6;opacity:.65;margin-top:6px;text-align:center}
+.cc-trait-jp{font-family:var(--jpg);font-weight:700;font-size:clamp(11px,2.9vw,13.5px);
+  letter-spacing:.06em;margin-top:5px;opacity:.78}
+.sec-div{border-top:4px double var(--rule);margin:26px 0 22px}
+.photo{width:224px;margin:16px auto 0;border:1.5px solid var(--rule);background:var(--paper-2);padding:6px 6px 5px}
+.photo .im{
+  aspect-ratio:3/4;background:var(--paper-3);display:grid;place-items:center;
+  border:1px solid var(--rule-soft);position:relative;overflow:hidden;
+}
+.photo .im img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.04)}
+.photo .cap{font-family:var(--disp);font-size:8.5px;letter-spacing:.12em;margin-top:5px;opacity:.65}
+.cc-meta{
+  font-family:var(--disp);font-size:clamp(12px,3.2vw,16px);letter-spacing:.14em;
+  text-transform:uppercase;margin-top:12px;
+}
+.tx-h{
+  font-family:var(--disp);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  opacity:.55;margin-bottom:14px;text-indent:.2em;
+}
+.tx{list-style:none;max-width:520px;margin:0 auto}
+.tx li{padding:11px 0;border-bottom:1px dotted var(--rule-soft)}
+.tx .qq{
+  font-family:var(--disp);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.55;display:block;
+}
+.tx .aa{font-family:var(--mono);font-size:13.5px;line-height:1.5;margin-top:4px;display:block}
+
+/* mailing list */
+.mail{
+  margin:30px auto 0;max-width:520px;text-align:left;
+  border:2px solid var(--rule);background:var(--paper);padding:18px 18px 16px;
+  box-shadow:5px 5px 0 var(--rule-soft);
+}
+.mail-h{
+  font-family:var(--disp);font-size:clamp(15px,4vw,20px);letter-spacing:.1em;
+  text-transform:uppercase;display:flex;align-items:center;gap:9px;
+}
+.mail-h b{display:block;width:9px;height:9px;background:var(--red);flex:none}
+.mail-p{font-family:var(--mono);font-size:12.5px;line-height:1.55;opacity:.75;margin-top:7px}
+.mail-row{display:flex;gap:7px;margin-top:13px}
+.mail-row input{
+  flex:1;min-width:0;background:var(--paper-2);color:var(--ink);
+  border:2px solid var(--rule);padding:11px 12px;
+  font-family:var(--mono);font-size:15px;outline:none;
+}
+.mail-row input:focus{border-color:var(--red);background:#fff}
+.mail-row button{
+  background:var(--ink);color:var(--paper);border:2px solid var(--ink);
+  font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  padding:11px 18px 9px;white-space:nowrap;
+}
+.mail-row button:disabled{background:var(--paper-3);border-color:var(--rule-soft);color:var(--ink-3);cursor:not-allowed}
+.mail-consent{
+  display:flex;align-items:flex-start;gap:9px;margin-top:11px;cursor:pointer;
+  font-family:var(--mono);font-size:11.5px;line-height:1.45;opacity:.8;
+}
+.mail-consent input{accent-color:var(--red);width:15px;height:15px;margin-top:1px;flex:none;cursor:pointer}
+.mail-consent a{color:var(--red);text-underline-offset:2px}
+.mail-msg{font-family:var(--mono);font-size:12px;margin-top:10px;line-height:1.45}
+.mail-msg.err{color:var(--red)}
+
+/* 1DERZ */
+.fc{
+  margin:14px auto 0;max-width:520px;display:none;
+  border:2px solid var(--red);background:var(--paper);padding:16px 18px 17px;
+  box-shadow:5px 5px 0 rgba(169,50,38,.28);text-align:left;
+}
+.fc.on{display:block}
+.fc-h{
+  font-family:var(--disp);font-size:clamp(15px,4vw,20px);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--red);
+}
+.fc-p{font-family:var(--mono);font-size:12.5px;line-height:1.55;opacity:.78;margin-top:6px}
+.fc-go{
+  display:inline-block;margin-top:13px;text-decoration:none;
+  background:var(--red);color:var(--paper);border:2px solid var(--red);
+  font-family:var(--disp);font-size:14px;letter-spacing:.15em;text-transform:uppercase;
+  padding:11px 20px 9px;box-shadow:4px 4px 0 var(--ink);
+  transition:transform .09s,box-shadow .09s;
+}
+.fc-go:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+
+.mail-done{
+  border:2px solid var(--rule);background:var(--ink);color:var(--paper);
+  padding:18px;text-align:center;margin:30px auto 0;max-width:520px;
+  box-shadow:5px 5px 0 var(--red);
+}
+.mail-done .t{font-family:var(--disp);font-size:20px;letter-spacing:.12em;text-transform:uppercase}
+.mail-done .s{font-family:var(--mono);font-size:12.5px;margin-top:6px;opacity:.85}
+
+.cardwrap{
+  position:fixed;inset:0;z-index:9600;display:none;
+  background:rgba(12,10,8,.92);padding:18px;
+  align-items:center;justify-content:center;flex-direction:column;gap:14px;
+}
+.cardwrap.on{display:flex}
+.cardwrap img{
+  max-width:min(92vw,360px);max-height:72vh;width:auto;height:auto;
+  border:3px solid var(--paper);box-shadow:0 18px 50px rgba(0,0,0,.6);display:block;
+}
+.cardwrap .hint{
+  font-family:var(--mono);font-size:12px;color:var(--paper);opacity:.78;
+  text-align:center;line-height:1.5;max-width:340px;
+}
+.cardwrap .acts{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.cardwrap .acts button{
+  font-family:var(--disp);font-size:13px;letter-spacing:.13em;text-transform:uppercase;
+  padding:11px 17px 9px;border:2px solid var(--paper);background:var(--paper);color:var(--ink);
+}
+.cardwrap .acts button.g{background:none;color:var(--paper)}
+
+.share{margin-top:28px;text-align:center}
+.share-h{font-family:var(--disp);font-size:clamp(17px,4.4vw,26px);letter-spacing:.02em;text-transform:uppercase;line-height:1.1}
+.share-sub{font-family:var(--mono);font-size:12px;margin-top:8px;opacity:.75;line-height:1.5}
+.share-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:15px}
+
+.play{
+  position:fixed;right:14px;z-index:9200;
+  bottom:calc(env(safe-area-inset-bottom,0px) + 14px);text-decoration:none;color:var(--paper);
+  background:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red);
+  display:flex;align-items:center;gap:9px;padding:9px 13px 8px;
+  transition:transform .09s,box-shadow .09s;
+}
+.play:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--red)}
+.play .tri{
+  width:0;height:0;flex:none;
+  border-left:12px solid var(--paper);border-top:8px solid transparent;border-bottom:8px solid transparent;
+}
+.play .pl{font-family:var(--disp);font-size:10px;letter-spacing:.14em;line-height:1.15;text-transform:uppercase}
+@media(max-width:520px){
+  .play{right:10px;bottom:10px;padding:8px 11px 7px}
+  .play .pl{font-size:9px}
+}
+.note{
+  font-family:var(--mono);font-size:11px;line-height:1.55;opacity:.62;
+  border:1px dashed var(--rule-soft);padding:9px 11px;margin-top:18px;
+}
+.fade{animation:fi .28s ease both}
+@keyframes fi{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.pop{animation:pp .3s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes pp{from{opacity:0;transform:rotate(-7deg) scale(1.5)}to{opacity:.82;transform:rotate(-7deg) scale(1)}}
+</style>
+</head>
+<body>
+
+<!-- ════════════ 1 · INTAKE ════════════ -->
+<section class="screen on" id="intake">
+  <div class="wrap">
+    <div class="top-bar">
+      <span>Yōkai Containment Bureau</span>
+      <span class="jp">妖怪収容局</span>
+      <span>Case File Open</span>
+    </div>
+
+    <div class="mark"><img src="assets/logo.png" alt="ONE OR EIGHT"></div>
+
+    <h1 class="big">Which Yōkai<em>Are You?</em></h1>
+    <div class="big-jp">妖怪診断</div>
+
+
+    <div class="pitch">Eight entities at large. Eight agents deployed. Answer eight questions and find out which one you are — and <b>which member brings you in.</b></div>
+    <div class="pitch-jp">8体の妖怪が逃走中。8人の捜査員が追っている。8つの質問に答えろ。お前がどの妖怪なのか、そして誰に捕らえられるのかを突き止める。</div>
+
+    <div class="cta-row">
+      <button class="btn" id="begin">Begin Interrogation<span class="btn-jp">尋問開始</span></button>
+      <div class="cta-note">Eight questions · about ninety seconds<span class="note-jp">全8問・約90秒</span></div>
+    </div>
+
+    <div class="hero-photo halftone">
+      <div class="fr"><img src="assets/hero.jpg" alt="ONE OR EIGHT"></div>
+      <div class="hero-cap"><span>Field Unit — ONE OR EIGHT</span><span>Deployed</span></div>
+    </div>
+
+    <div class="footline">All Eight Entities Remain at Large ★ Report Any Sightings</div>
+  </div>
+</section>
+
+<section class="screen" id="reel">
+  <div class="rwrap">
+    <div class="reel-bar">
+      <span><span class="rec"><b></b></span> Case File Opening</span>
+      <span class="sp"><button class="reel-skip" id="skip">Skip ▸</button></span>
+    </div>
+    <div class="reel-frame">
+      <video id="rv" poster="assets/video/intro.jpg" muted playsinline preload="auto" src="assets/video/intro.mp4"></video>
+    </div>
+    <div class="reel-prog"><i id="rp"></i></div>
+    <div class="reel-cap"><span>Evidence Reel — Exhibit A</span><span>Yōkai Containment Bureau</span></div>
+  </div>
+</section>
+
+<!-- ════════════ 2 · INTERROGATION ════════════ -->
+<section class="screen" id="interro">
+  <div class="wrap">
+    <div class="io-bar">
+      <span>Yōkai Containment Bureau <span class="bar-jp">妖怪収容局</span></span>
+      <span class="tag-o">Interview Room 108</span>
+      <span class="sp rec"><b></b>Recording</span>
+      <span id="prog">00 / 08</span>
+    </div>
+
+    <div class="board" id="board"></div>
+
+    <div class="sheet">
+      <div class="sheet-hd">
+        <span>Statement of Subject — Verbatim Record</span>
+        <span class="r">Form YCB-8</span>
+      </div>
+      <div class="q-no" id="qno">Question 01 of 08</div>
+      <div class="q-txt" id="qtxt"></div>
+      <div class="q-jp" id="qjp"></div>
+      <div class="ev" id="ev">
+        <div class="ev-frame halftone">
+          <div class="in"><video id="evv" muted loop playsinline preload="none"></video></div>
+        </div>
+        <div class="ev-cap"><span id="evc">Surveillance</span><span class="rr">● REC</span></div>
+      </div>
+      <ul class="opts" id="opts"></ul>
+      <div class="sheet-ft">
+        <button class="back" id="back"><i></i><span>Amend previous answer</span></button>
+        <span>Answers cannot be left blank</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 3 · REPORT ════════════ -->
+<section class="screen" id="report">
+  <div class="wrap">
+    <div class="file halftone" id="file">
+      <div class="punch"><i></i><i></i><i></i></div>
+      <div class="file-hd">
+        Yōkai Containment Bureau · Archive Case File <span id="caseNo">#44322</span><br>
+        Classification: <b>Confidential</b> · File Status: <b>Active</b> · Agency Eyes Only
+      </div>
+
+      <div class="pair">
+        <div class="pf">
+          <div class="cc-lab">You Are</div>
+          <div class="photo"><div class="im"><img id="yImg" alt=""></div>
+            <div class="cap" id="yCap">ENTITY —</div></div>
+          <div class="hero-name" id="yName"></div>
+          <div class="cc-jp" id="yJp"></div>
+        </div>
+        <div class="pf">
+          <div class="cc-lab">You Are Wanted By</div>
+          <div class="photo"><div class="im"><img id="mImg" alt=""></div>
+            <div class="cap" id="mCap">AGENT —</div></div>
+          <div class="hero-name" id="mName"></div>
+          <div class="cc-jp" id="mJp"></div>
+        </div>
+      </div>
+
+      <div class="pair-meta">
+        <div><div class="cc-trait" id="yMeta"></div><div class="cc-trait-jp" id="yMetaJp"></div><div class="cc-desc" id="yDesc"></div>
+          <div class="cc-desc-jp" id="yDescJp"></div></div>
+        <div><div class="cc-meta" id="mMeta"></div><div class="cc-desc" id="mDesc"></div>
+          <div class="cc-desc-jp" id="mDescJp"></div></div>
+      </div>
+
+      <div class="sec-div"></div>
+
+      <div class="tx-h">Statement of Subject — Verbatim Record</div>
+      <ul class="tx" id="tx"></ul>
+    </div>
+
+    <div class="share">
+      <div class="share-h" id="shareH">Wanted by —</div>
+      <div class="share-sub" id="shareSub">Report your sighting. Tag the agent assigned to your case.</div>
+      <div class="share-sub-jp">担当捜査員をタグ付けして、目撃情報を報告してください。</div>
+      <div class="share-row">
+        <button class="btn sm" data-sh="ig">Instagram Story</button>
+        <button class="btn sm" data-sh="x">Post to X</button>
+        <button class="btn sm" data-sh="tt">TikTok</button>
+        <button class="btn sm" data-sh="dl">Download</button>
+        <button class="btn sm ghost" id="again">Retake ↻</button>
+      </div>
+    </div>
+
+    <div class="mail" id="mail">
+      <div class="mail-h"><b></b>Join the Mailing List</div>
+      <div class="mail-p">First word on new drops, merch and tour dates from ONE OR EIGHT.</div>
+      <div class="mail-row">
+        <input type="email" id="mEmail" placeholder="your@email.com" autocomplete="email" inputmode="email">
+        <button id="mGo" disabled>Sign Up</button>
+      </div>
+      <label class="mail-consent">
+        <input type="checkbox" id="mOk">
+        <span>I agree to join the ONE OR EIGHT newsletter and accept the
+          <a href="https://oneoreight.com/privacypolicy/" target="_blank" rel="noopener">Terms &amp; Privacy Policy</a>.</span>
+      </label>
+      <div class="mail-msg" id="mMsg"></div>
+    </div>
+
+    <div class="fc" id="fc">
+      <div class="fc-h">Join 1DERZ for Free</div>
+      <div class="fc-p">The official ONE OR EIGHT fan club. Free membership, available in your region.</div>
+      <a class="fc-go" href="https://www.oneoreight-fc.com/" target="_blank" rel="noopener">Join 1DERZ ▸</a>
+    </div>
+
+    <div class="mail-done" id="mailDone" style="display:none">
+      <div class="t">You're on the list</div>
+      <div class="s" id="mDoneMsg"></div>
+    </div>
+  </div>
+</section>
+
+<div class="cardwrap" id="cardwrap">
+  <img id="cardImg" alt="Your case file">
+  <div class="hint" id="cardHint"></div>
+  <div class="acts">
+    <button id="cardShare">Share</button>
+    <button id="cardSave">Save image</button>
+    <button class="g" id="cardClose">Close</button>
+  </div>
+</div>
+
+<a class="play" href="https://www.youtube.com/watch?v=vDxT3UG8h0Y" target="_blank" rel="noopener">
+  <span class="tri"></span><span class="pl">Play<br>TRANSLATE</span>
+</a>
+
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   DATA — all placeholder pending final content
+   ═══════════════════════════════════════════════════════════ */
+
+const MEMBERS = {
+  mizuki : { name:'MIZUKI', photo:'assets/members/mizuki.jpg',  jp:'ミズキ',   no:'01', div:'COMMAND',           desc:'Strategic lead. Handles threat assessment and directs every containment operation from the front.', descJp:'戦略指揮。脅威を評価し、あらゆる封じ込め作戦を最前線で指揮する。' },
+  ryota  : { name:'RYOTA', photo:'assets/members/ryota.jpg',   jp:'リョウタ', no:'02', div:'TRACKING',          desc:'Field tracker. Follows a trail for days without losing it and does not stop when it goes cold.', descJp:'追跡。何日にもわたって痕跡を見失わず、手掛かりが途絶えても追跡をやめない。' },
+  reia   : { name:'REIA', photo:'assets/members/reia.jpg',    jp:'レイア',   no:'03', div:'SURVEILLANCE',      desc:'Reconnaissance. Watches longer than anyone thinks is reasonable and reports what everyone else missed.', descJp:'監視。誰もが合理的とは思わないほど長く監視を続け、他の誰も見逃したものを報告する。' },
+  takeru : { name:'TAKERU', photo:'assets/members/takeru.jpg',  jp:'タケル',   no:'04', div:'TACTICAL RESPONSE', desc:'Close-quarters specialist. First through the door, and the reason the door is open.', descJp:'戦術対応。近接戦闘のスペシャリスト。誰よりも先にドアをくぐり、そのドアが開いている理由でもある。' },
+  neo    : { name:'NEO', photo:'assets/members/neo.jpg',     jp:'ネオ',     no:'05', div:'COMMUNICATIONS',    desc:'Signals and negotiation. Talks a subject out of hiding before force is ever authorised.', descJp:'通信・交渉。シグナルと交渉を担当。武力行使が許可される前に、対象者を説得して自ら姿を現させる。' },
+  souma  : { name:'SOUMA', photo:'assets/members/souma.jpg',   jp:'ソウマ',   no:'06', div:'CONTAINMENT',       desc:'Containment protocols. Methodical, patient, and entirely unbothered by what he is holding.', descJp:'封じ込め。封じ込め手順を担当。几帳面で忍耐強く、何を拘束していようとまったく動じない。' },
+  yuga   : { name:'YUGA', photo:'assets/members/yuga.jpg',    jp:'ユウガ',   no:'07', div:'INTELLIGENCE',      desc:'Analyst and linguist. Reads old records and predicts behaviour before it happens.', descJp:'情報分析。分析官兼言語のスペシャリスト。古い記録を読み、行動が起こる前に予測する。' },
+  tsubasa: { name:'TSUBASA', photo:'assets/members/tsubasa.jpg', jp:'ツバサ',   no:'08', div:'TECHNOLOGY',        desc:'Prototype systems. Builds the device that catches you, usually the night before.', descJp:'技術。プロトタイプシステムを担当。あなたを捕らえる装置を、たいてい前日の夜に完成させる。' }
+};
+
+const ALL = Object.keys(MEMBERS);
+const LONGHAIR = ['reia','mizuki','ryota'];
+const FACELESS = ['yuga','tsubasa','souma','takeru','neo'];
+
+const YOKAI = {
+  oni: { name:'ONI', jp:'鬼', photo:'assets/yokai/oni.jpg', key:'SDH', agent:'souma',
+    shortJp:'皆が思っていたことを、最悪の場面で口にする。',
+    short:'Says the thing everyone else was thinking, usually at the worst possible moment.',
+    traitJp:'強気・率直・短気',
+    trait:'Confrontational · Unfiltered · Quick to burn',
+    desc:'Says the thing everyone else was thinking, usually at the worst possible moment. Honest past the point of being useful. Quick to anger and just as quick to let it go. Would rather have the argument than let it slide.',
+    descJp:'皆が思っていても言わないことを、最悪の場面で口にする。正直すぎて役に立たない。すぐ怒り、すぐ忘れる。見過ごすより、ぶつかる方を選ぶ。' },
+
+  ashiarai: { name:'ASHIARAI YASHIKI', jp:'足洗邸', photo:'assets/yokai/ashiarai.jpg', key:'SDC',  agent:'yuga',
+    shortJp:'前触れもなく現れ、要求が通るまで帰らない。',
+    short:'Turns up unannounced with a demand and does not leave until it is met.',
+    traitJp:'ぶっきらぼう・頑固・忍耐強い',
+    trait:'Blunt · Immovable · Relentlessly patient',
+    desc:'Turns up unannounced with a demand and does not leave until it is met. Blunt about what they want and immovable once they have asked. No small talk, and entirely comfortable with your discomfort.',
+    descJp:'前触れもなく現れ、要求が通るまで帰らない。望みは率直に告げ、一度言えば決して退かない。世間話はせず、こちらの居心地の悪さなど意に介さない。' },
+
+  kappa: { name:'KAPPA', jp:'河童', photo:'assets/yokai/kappa.jpg', key:'SOH', agent:'takeru',
+    shortJp:'厄介者だが礼儀は守る。人を試し、反応を欲しがる。',
+    short:'Trouble, but polite about it. Always testing people, and needs a reaction.',
+    traitJp:'いたずら好き・衝動的・礼儀正しい',
+    trait:'Mischievous · Impulsive · Oddly well-mannered',
+    desc:'Trouble, but polite about it. Always testing people with jokes and pranks, yet strangely strict about their own rules. Needs a reaction to feel like it landed.',
+    descJp:'厄介者だが、礼儀は守る。冗談や悪戯で人を試しながら、自分の流儀には妙に厳しい。反応がなければ物足りない。' },
+
+  okubi: { name:'OKUBI', jp:'大首', photo:'assets/yokai/okubi.jpg', key:'SOC', agent:'reia',
+    shortJp:'注目を求めないが、他へ目を向けさせない。',
+    short:'Will not ask for your attention, but makes it impossible to give it to anyone else.',
+    traitJp:'人を惹きつける・無口・根に持つ',
+    trait:'Magnetic · Silent · Keeps score',
+    desc:'Will not ask for your attention, but makes it impossible to give it to anyone else. Lets presence do the work and never says the need out loud. Reads as aloof, and quietly remembers everything.',
+    descJp:'注目を求めはしないが、他へ目を向けさせない。語らずとも存在だけで場を占める。冷淡に見えて、実は何もかも覚えている。' },
+
+  gashadokuro: { name:'GASHADOKURO', jp:'がしゃどくろ', photo:'assets/yokai/gashadokuro.jpg', key:'UDH', agent:'neo',
+    shortJp:'いくら得ても満たされない。他人が捨てた物を全て抱え込む。',
+    short:'Nothing is ever enough. Keeps everything everyone else threw away.',
+    traitJp:'強欲・行動派・気づかれにくい',
+    trait:'Insatiable · Driven · Invisible until enormous',
+    desc:'Nothing is ever enough. Goes straight for what it wants and keeps everything everyone else threw away. Operates completely unnoticed until it is suddenly too big to ignore.',
+    descJp:'いくら得ても満たされない。欲しいものへ一直線に進み、他人が捨てた物を全て抱え込む。誰にも気づかれぬまま、ある日突然、無視できぬ大きさになる。' },
+
+  longneck: { name:'KASUMI', jp:'霞', photo:'assets/yokai/longneck.jpg', key:'UDC', agent:'ryota',
+    shortJp:'昼は至って普通、朝にはお前の全てを知っている。',
+    short:'Perfectly normal by day, knows everything about you by morning.',
+    traitJp:'おせっかい・観察力が高い・普通に見える',
+    trait:'Nosy · Observant · Deceptively ordinary',
+    desc:'Perfectly normal by day, knows everything about you by morning. Asks the question everyone else was too polite to ask, and reaches into business that is not theirs while seeming entirely unremarkable.',
+    descJp:'昼は至って普通、朝にはお前の全てを知っている。誰もが遠慮して訊かないことを訊き、他人の領分へ平然と首を伸ばす。' },
+
+  faceless: { name:'JIRŌ', jp:'次郎', photo:'assets/yokai/faceless.jpg', key:'UOH', agent:'tsubasa',
+    shortJp:'どこにでも馴染み、後から人相を語れない。',
+    short:'Fits in anywhere, and you will not be able to describe them afterwards.',
+    traitJp:'順応性が高い・読めない・自分がない',
+    trait:'Adaptive · Unreadable · No fixed self',
+    desc:'Fits in anywhere, and you will not be able to describe them afterwards. Mirrors whoever they are with and slips between versions effortlessly. There is no settled person underneath to get to know.',
+    descJp:'どこにでも馴染み、後から誰も人相を語れない。相手に合わせて姿を映し、幾つもの自分を難なく行き来する。その下に、掴むべき素顔はない。' },
+
+  longhair: { name:'KEJŌRŌ', jp:'毛倡妓', photo:'assets/yokai/longhair.jpg', key:'UOC', agent:'mizuki',
+    shortJp:'ずっとその場にいながら、一度も話に加わらない。',
+    short:'In the room the whole time, never once in the conversation.',
+    traitJp:'内向的・用心深い・ため込む',
+    trait:'Withdrawn · Watchful · Lets it build',
+    desc:'In the room the whole time, never once in the conversation. Self-concealing and hard to reach. Would rather let something build quietly than say it out loud.',
+    descJp:'ずっとその場にいながら、一度も話に加わらない。己を隠し、容易には近づけない。口に出すより、静かに溜め込む方を選ぶ。' }
+};
+
+/* Axes — three binary traits, 2×2×2 = the eight yōkai exactly.
+   P presence : Seen (+) / Unseen (−)
+   A approach : Direct (+) / Oblique (−)
+   T tempo    : Hot (+) / Cold (−)
+   Each axis totals an odd number, so ties are impossible. */
+
+const CLIPS = {
+  0: { src:'assets/video/q1.mp4', poster:'assets/video/q1.jpg', cap:'Surveillance — Holding Room' },
+  3: { src:'assets/video/q4.mp4', poster:'assets/video/q4.jpg', cap:'Holding Room — Subject Processing' },
+  4: { src:'assets/video/q5.mp4', poster:'assets/video/q5.jpg', cap:'Street Cam — Pursuit in Progress' },
+  5: { src:'assets/video/q6.mp4', poster:'assets/video/q6.jpg', cap:'Aerial Sweep — District Canvass' },
+  6: { src:'assets/video/q7.mp4', poster:'assets/video/q7.jpg', cap:'Night Patrol — Agent in Field' },
+  7: { src:'assets/video/q8.mp4', poster:'assets/video/q8.jpg', cap:'Yōkai Apprehended' },
+  2: { src:'assets/video/q3.mp4', poster:'assets/video/q3.jpg', cap:'Evidence Table — Recovered Press' },
+  1: { src:'assets/video/q2.mp4', poster:'assets/video/q2.jpg', cap:'Field Footage — Alley Recovery' }
+};
+
+const Q = [
+  { ax:'P', w:1, tag:'PRESENCE',
+    q:'You walk into a party where you know exactly one person.',
+    jp:'知り合いが一人しかいないパーティーに来た。さて、どうする？',
+    o:[
+      { v:+1, t:'Find the loudest group in the room and join it.', jp:'一番にぎやかなグループを見つけて、そこに入る。',        e:'Joins the loudest group' },
+      { v:+1, t:'Make an entrance. They will work out who you are.', jp:'目立つように登場して、自分が誰なのか周りに分かってもらう。',      e:'Makes an entrance' },
+      { v:-1, t:'Find a corner with a good view of everything.', jp:'部屋全体を見渡せる場所を探して、そこにいる。',          e:'Takes the corner with the view' },
+      { v:-1, t:'Stay near the person you know and watch the room.', jp:'知り合いの近くにいて、周りの様子を見る。',      e:'Stays at the edge, watching' }
+    ]},
+
+  { ax:'P', w:1, tag:'EXPOSURE',
+    q:'There is a photo of you going round, and you actually like it.',
+    jp:'お前の写った写真が出回っている。写真は気に入っている。どうする？',
+    o:[
+      { v:+1, t:'Post it. Why would you not post it.', jp:'すぐに投稿する。投稿しない理由がない。',                    e:'Posts it immediately' },
+      { v:+1, t:'Make it your profile picture by the end of the day.', jp:'その日のうちにプロフィール写真にする。',    e:'Makes it the profile picture' },
+      { v:-1, t:'Save it and never show a single person.', jp:'保存して、誰にも見せない。',                e:'Saves it, shows nobody' },
+      { v:-1, t:'Let someone else post it and say nothing about it.', jp:'他の人が投稿するのに任せて、自分は何も言わない。',     e:'Lets someone else post it' }
+    ]},
+
+  { ax:'P', w:1, tag:'THE ANSWER',
+    q:'Your friends are arguing about something you happen to know the answer to.',
+    jp:'自分が答えを知っていることで、友達が言い争っている。どうする？',
+    o:[
+      { v:+1, t:'Step in and end it.', jp:'間に入って、話を終わらせる。',                                    e:'Steps in and ends it' },
+      { v:+1, t:'Say it loud enough that the argument stops.', jp:'言い争いが止まるくらいの声で答えを言う。',            e:'Ends it loudly' },
+      { v:-1, t:'Let them go. They will get there.', jp:'そのままにしておく。そのうち答えにたどり着くだろう。',                      e:'Lets it run' },
+      { v:-1, t:'Tell one of them quietly, afterwards.', jp:'後で、一人にこっそり教える。',                  e:'Tells one person after' }
+    ]},
+
+  { ax:'A', w:1, tag:'THE ASK',
+    q:'There is something you want from someone.',
+    jp:'誰かから欲しいものがある。どうする？',
+    o:[
+      { v:+1, t:'Ask for it. Out loud. Now.', jp:'今すぐ、声に出してお願いする。',                             e:'Asks outright' },
+      { v:+1, t:'Tell them you are taking it, then take it.', jp:'「もらうね」と言って、そのままもらう。',             e:'States intent, then takes' },
+      { v:-1, t:'Make them think it was their idea.', jp:'相手が自分から思いついたと思うように仕向ける。',                     e:'Engineers their idea' },
+      { v:-1, t:'Wait, then bring it up later when the time is right.', jp:'タイミングを待って、後で話を切り出す。', e:'Waits for the right moment' }
+    ]},
+
+  { ax:'A', w:1, tag:'CREDIT',
+    q:'Someone takes credit for something you did.',
+    jp:'自分がやったことを、誰かに自分の手柄にされた。どうする？',
+    o:[
+      { v:+1, t:'Say something about it in the room.', jp:'その場で「自分がやった」と言う。',                    e:'Says it in the room' },
+      { v:+1, t:'Message them directly and ask what that was.', jp:'本人に直接連絡して、どういうことか聞く。',           e:'Confronts them directly' },
+      { v:-1, t:'Make sure the right people find out another way.', jp:'別の方法で、知るべき人に伝わるようにする。',       e:'Routes it to the right people' },
+      { v:-1, t:'Bring it up much later, when it will land harder.', jp:'もっと効果的なタイミングまで待ってから言う。',      e:'Saves it for later impact' }
+    ]},
+
+  { ax:'A', w:1, tag:'DISAGREEMENT',
+    q:'How do you actually win a disagreement?',
+    jp:'議論になった。お前はどうやって相手を負かす？',
+    o:[
+      { v:+1, t:'Say the thing nobody else in the room will say.', jp:'その場にいる誰もが言わないようなことを言う。',        e:'Says the unsayable thing' },
+      { v:+1, t:'Keep pushing until they give it up.', jp:'相手が折れるまで言い続ける。',                    e:'Pushes until they concede' },
+      { v:-1, t:'Ask questions until they argue themselves out of it.', jp:'質問を重ねて、相手自身に答えを出させる。',   e:'Questions them out of it' },
+      { v:-1, t:'Agree with them, then do it your way regardless.', jp:'相手に同意しつつ、自分のやり方で進める。',       e:'Agrees, proceeds anyway' }
+    ]},
+
+  { ax:'T', w:2, tag:'TEMPER',
+    q:'Someone does something that genuinely makes you angry.',
+    jp:'誰かに本気で腹が立つことをされた。どうする？',
+    o:[
+      { v:+1, t:'React. Right then. In the moment.', jp:'その場ですぐに反応する。',                      e:'Reacts in the moment' },
+      { v:+1, t:'Snap, and be completely over it ten minutes later.', jp:'一気に怒って、10分後にはすっかり忘れる。',     e:'Snaps, then forgets it' },
+      { v:-1, t:'Say nothing at all. Remember all of it.', jp:'何も言わない。でも全部覚えておく。',                e:'Says nothing, remembers' },
+      { v:-1, t:'Wait. There will be a better moment than this one.', jp:'今は何もせず、もっといいタイミングを待つ。',     e:'Waits for a better moment' }
+    ]},
+
+  { ax:'T', w:1, tag:'IMPULSE',
+    q:'You have decided you want something.',
+    jp:'欲しいものが決まった。どう動く？',
+    o:[
+      { v:+1, t:'Go now. Work it out on the way.', jp:'今すぐ動く。あとは途中で考える。',                        e:'Goes immediately' },
+      { v:+1, t:'Start tonight, before you talk yourself out of it.', jp:'迷う前に、今夜から動く。',     e:'Starts before doubt sets in' },
+      { v:-1, t:'Plan it out properly first.', jp:'まずしっかり計画を立てる。',                            e:'Plans it out first' },
+      { v:-1, t:'Wait until the conditions are right, however long.', jp:'条件が整うまで、どれだけ時間がかかっても待つ。',     e:'Waits for the conditions' }
+    ]}
+];
+
+/* ═══════════════════════════════════════════════════════════
+   SCORING — three axes resolve to one of eight cells.
+   No weighted tally, no tiebreak: each axis sums to an odd
+   number, so every path lands cleanly in exactly one yōkai.
+   ═══════════════════════════════════════════════════════════ */
+
+function seedOf(str){
+  let h = 2166136261;
+  for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h,16777619); }
+  return (h>>>0);
+}
+function resolve(ans){
+  let P = 0, A = 0, T = 0;
+  ans.forEach((oi,qi)=>{
+    const q = Q[qi], v = q.o[oi].v * q.w;
+    if(q.ax === 'P') P += v; else if(q.ax === 'A') A += v; else T += v;
+  });
+  const key = (P>0?'S':'U') + (A>0?'D':'O') + (T>0?'H':'C');
+  const yid = Object.keys(YOKAI).find(k => YOKAI[k].key === key);
+  return { yid, mid: YOKAI[yid].agent, axes:{P,A,T} };
+}
+
+/* ═══════════════════════════════════════════════════════════
+   UI
+   ═══════════════════════════════════════════════════════════ */
+
+const $ = s => document.querySelector(s);
+let answers = [], cur = 0, typing = null;
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  $('#'+id).classList.add('on');
+  window.scrollTo(0,0);
+}
+/* ── case board ── */
+function drawBoard(){
+  $('#board').innerHTML = Q.map((q,i)=>{
+    const done = answers[i] !== undefined;
+    const live = i === cur && !done;
+    const cls  = done ? 'cell done' : (live ? 'cell live' : 'cell');
+    const body = done
+      ? `<div class="cv">${q.o[answers[i]].e}</div>`
+      : `<span class="bar"></span><span class="bar w2"></span><span class="bar w3"></span>`;
+    const st = done ? 'LOGGED' : (live ? 'ACTIVE' : 'SEALED');
+    return `<div class="${cls}">
+      <div class="cn"><span>${String(i+1).padStart(2,'0')}</span><span>${st}</span></div>
+      ${done ? `<div class="cn" style="margin-top:4px;opacity:.5">${q.tag}</div>` : ''}
+      ${body}
+    </div>`;
+  }).join('');
+  $('#prog').textContent = String(answers.filter(a=>a!==undefined).length).padStart(2,'0') + ' / 08';
+}
+
+/* ── typewriter ── */
+function typeOut(el, text, done){
+  clearInterval(typing);
+  el.textContent = ''; 
+  const cur = document.createElement('span'); cur.className='q-cur';
+  el.appendChild(cur);
+  let i = 0;
+  typing = setInterval(()=>{
+    if(i >= text.length){ clearInterval(typing); cur.remove(); done && done(); return; }
+    cur.insertAdjacentText('beforebegin', text[i++]);
+  }, 17);
+}
+
+/* ── evidence clip ── */
+const ev = $('#ev'), evv = $('#evv'), evc = $('#evc');
+const stillOnly = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function setClip(i){
+  const c = CLIPS[i];
+  if(!c){ ev.classList.remove('on'); try{ evv.pause(); }catch(e){} evv.removeAttribute('src'); return; }
+  ev.classList.add('on');
+  evc.textContent = c.cap;
+  evv.poster = c.poster;
+  if(stillOnly){ evv.removeAttribute('src'); return; }
+  if(evv.getAttribute('src') !== c.src){
+    evv.setAttribute('src', c.src);
+    evv.load();
+  }
+  const p = evv.play();
+  if(p && p.catch) p.catch(()=>{});   // blocked — poster stays, no harm
+  prefetch(i + 1);
+}
+// warm the next clip so it is ready before the user gets there
+const warmed = {};
+function prefetch(i){
+  const c = CLIPS[i];
+  if(!c || warmed[i] || stillOnly) return;
+  warmed[i] = true;
+  const v = document.createElement('video');
+  v.muted = true; v.preload = 'auto'; v.src = c.src;
+}
+
+/* ── question ── */
+function drawQ(){
+  drawBoard();
+  const q = Q[cur];
+  setClip(cur);
+  $('#qno').textContent = `Question ${String(cur+1).padStart(2,'0')} of 08`;
+  $('#qjp').textContent = q.jp;
+  $('#back').style.visibility = cur === 0 ? 'hidden' : 'visible';
+  const ul = $('#opts'); ul.innerHTML = '';
+  typeOut($('#qtxt'), q.q, ()=>{
+    ul.innerHTML = q.o.map((o,i)=>
+      `<li><button class="opt fade" data-i="${i}" style="animation-delay:${i*.05}s">
+        <span class="k">${String.fromCharCode(65+i)}</span>
+        <span class="ot">${o.t}${o.jp ? `<span class="oj">${o.jp}</span>` : ''}</span>
+      </button></li>`).join('');
+  });
+}
+
+$('#opts').addEventListener('click', e=>{
+  const b = e.target.closest('.opt'); if(!b) return;
+  answers[cur] = +b.dataset.i;
+  drawBoard();
+  setTimeout(()=>{
+    if(cur < Q.length - 1){ cur++; drawQ(); }
+    else buildReport();
+  }, 260);
+});
+$('#back').addEventListener('click', ()=>{ if(cur>0){ cur--; drawQ(); } });
+function startQuiz(){ answers=[]; cur=0; show('interro'); drawQ(); }
+
+const rv = $('#rv'), rp = $('#rp');
+let reelDone = false;
+function endReel(){
+  if(reelDone) return; reelDone = true;
+  try{ rv.pause(); }catch(e){}
+  startQuiz();
+}
+rv.addEventListener('ended', endReel);
+rv.addEventListener('timeupdate', ()=>{
+  if(rv.duration) rp.style.width = (100 * rv.currentTime / rv.duration) + '%';
+});
+$('#skip').addEventListener('click', endReel);
+
+$('#begin').addEventListener('click', ()=>{
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still){ startQuiz(); return; }
+  reelDone = false; rp.style.width = '0%';
+  show('reel');
+  try{ rv.currentTime = 0; }catch(e){}
+  const p = rv.play();
+  // autoplay blocked (Low Power Mode, Data Saver) — hold on the poster briefly, then continue
+  if(p && p.catch) p.catch(()=>{ setTimeout(endReel, 1400); });
+  // safety net: never strand the user if 'ended' never fires
+  setTimeout(endReel, 6000);
+});
+$('#again').addEventListener('click', ()=>{
+  answers=[]; cur=0;
+  $('#mail').style.display=''; $('#mailDone').style.display='none';
+  mMsg.textContent=''; mEmail.value=''; mOk.checked=false; mGo.textContent='Sign Up'; syncMail();
+  show('intake');
+});
+
+/* ── 1DERZ fan club — shown only in eligible territories ── */
+const FC_OK = ['SG','JP','US','TH','BR','AR'];
+
+// Fallback when /api/geo isn't reachable (local dev, or a non-Vercel host).
+// Timezone is a rough proxy, never as reliable as the edge header.
+function countryFromTZ(){
+  let tz = '';
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e){ return ''; }
+  if(tz === 'Asia/Singapore') return 'SG';
+  if(tz === 'Asia/Tokyo') return 'JP';
+  if(tz === 'Asia/Bangkok') return 'TH';
+  if(tz.startsWith('America/Argentina/') || tz === 'America/Buenos_Aires') return 'AR';
+  if(['America/Sao_Paulo','America/Bahia','America/Fortaleza','America/Recife',
+      'America/Belem','America/Manaus','America/Cuiaba','America/Campo_Grande',
+      'America/Porto_Velho','America/Boa_Vista','America/Rio_Branco',
+      'America/Maceio','America/Araguaina','America/Santarem','America/Noronha'].includes(tz)) return 'BR';
+  if(['America/New_York','America/Chicago','America/Denver','America/Los_Angeles',
+      'America/Phoenix','America/Anchorage','America/Detroit','America/Indiana/Indianapolis',
+      'Pacific/Honolulu','America/Boise','America/Juneau'].includes(tz)) return 'US';
+  return '';
+}
+
+(async function initFC(){
+  let cc = '';
+  try{
+    const r = await fetch('/api/geo', { cache:'no-store' });
+    if(r.ok){ const d = await r.json(); cc = (d.country || '').toUpperCase(); }
+  }catch(e){ /* not on Vercel, or offline */ }
+  if(!cc) cc = countryFromTZ();
+  if(FC_OK.includes(cc)) $('#fc').classList.add('on');
+})();
+
+/* ── mailing list ── */
+const mEmail=$('#mEmail'), mOk=$('#mOk'), mGo=$('#mGo'), mMsg=$('#mMsg');
+let lastResult = { yid:'', mid:'' };
+const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+function syncMail(){ mGo.disabled = !(mOk.checked && validEmail(mEmail.value.trim())); }
+mEmail.addEventListener('input', syncMail);
+mOk.addEventListener('change', syncMail);
+
+mGo.addEventListener('click', async ()=>{
+  mGo.disabled = true; mGo.textContent = '···'; mMsg.textContent = ''; mMsg.className = 'mail-msg';
+  try{
+    const r = await fetch('/api/subscribe', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email:mEmail.value.trim(), yokai:lastResult.yid, agent:lastResult.mid })
+    });
+    const d = await r.json().catch(()=>({}));
+    if(r.ok && d.ok){
+      $('#mail').style.display='none';
+      const fcb=$('#fc'); if(fcb.classList.contains('on')) fcb.style.margin='24px auto 0';
+      $('#mDoneMsg').textContent = d.message || 'Check your inbox to confirm.';
+      $('#mailDone').style.display='block';
+      return;
+    }
+    mMsg.textContent = d.error || 'Something went wrong — try again?';
+  }catch(e){
+    mMsg.textContent = 'Network error. Check your connection and try again.';
+  }
+  mMsg.className = 'mail-msg err';
+  mGo.textContent = 'Sign Up'; syncMail();
+});
+
+/* ── report ── */
+function buildReport(){
+  const { yid, mid } = resolve(answers);
+  lastResult = { yid, mid };
+  const y = YOKAI[yid], m = MEMBERS[mid];
+
+  $('#caseNo').textContent = '#' + (44322 + Math.abs(seedOf(answers.join('-'))) % 5000);
+
+  $('#tx').innerHTML = Q.map((q,i)=>`
+    <li><span class="qq">${String(i+1).padStart(2,'0')} · ${q.q}</span>
+      <span class="aa">${q.o[answers[i]].t}</span></li>`).join('');
+
+  const yi = $('#yImg');
+  if(y.photo){ yi.src = y.photo; yi.alt = y.name; yi.style.display='block'; }
+  else { yi.removeAttribute('src'); yi.style.display='none'; }
+  $('#yCap').textContent = 'ENTITY · ' + y.jp;
+  $('#yName').textContent = y.name;
+  $('#yJp').textContent   = y.jp;
+  $('#yDesc').textContent = y.desc;
+  $('#yDescJp').textContent = y.descJp || '';
+  $('#yMeta').textContent = y.trait;
+  $('#yMetaJp').textContent = y.traitJp || '';
+
+  $('#mName').textContent = m.name;
+  $('#mJp').textContent   = m.jp;
+  $('#mDesc').textContent = m.desc;
+  $('#mDescJp').textContent = m.descJp || '';
+  $('#mCap').textContent  = 'AGENT ' + m.no;
+  const mi = $('#mImg');
+  if(m.photo){ mi.src = m.photo; mi.alt = m.name; mi.style.display = 'block'; }
+  else { mi.removeAttribute('src'); mi.style.display = 'none'; }
+  $('#mMeta').textContent = `Agent ${m.no} — ${m.div} · Yōkai Network Investigation, Active`;
+
+
+  $('#shareH').textContent = 'Wanted by ' + m.name;
+
+  show('report');
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   SHARE — renders a 1080×1920 case file off-screen, snapshots
+   it with html2canvas, then hands the PNG to the platform.
+
+   Mobile  : Web Share Level 2 → native sheet → IG / X / TikTok
+   Desktop : download the PNG + copy the caption (X also opens compose)
+
+   Notes carried over from KONBINI 108, both hard-won:
+   · html2canvas silently drops <img src="data:..."> with large
+     payloads — bake to a blob: URL instead.
+   · object-fit:cover renders at natural aspect — pre-crop on a
+     canvas so the <img> is already the right shape.
+   ═══════════════════════════════════════════════════════════ */
+
+const SHARE_URL = 'translate.crewpass108.com';
+
+function shareToast(msg, ms){
+  let t = document.getElementById('shToast');
+  if(!t){
+    t = document.createElement('div');
+    t.id = 'shToast';
+    t.style.cssText = 'position:fixed;left:50%;bottom:22px;transform:translate(-50%,42px);'
+      + 'background:#15120E;color:#E7E0CE;border:2px solid #A93226;font-family:"Special Elite",monospace;'
+      + 'font-size:12.5px;line-height:1.45;padding:11px 16px;max-width:min(88vw,400px);text-align:center;'
+      + 'z-index:9500;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:pre-line';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  void t.offsetWidth;
+  t.style.opacity = '1'; t.style.transform = 'translate(-50%,0)';
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translate(-50%,42px)'; }, ms || 3600);
+}
+
+// pre-crop the portrait so html2canvas gets a correctly shaped raster
+function bakePhoto(src, w, h){
+  return new Promise((resolve)=>{
+    if(!src) return resolve(null);
+    const img = new Image();
+    const done = setTimeout(()=>resolve(null), 7000);
+    img.onerror = ()=>{ clearTimeout(done); resolve(null); };
+    img.onload = async ()=>{
+      try{
+        if(img.decode){ try{ await img.decode(); }catch(e){} }
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d');
+        const ar = w / h, sar = img.naturalWidth / img.naturalHeight;
+        let sw, sh, sx, sy;
+        if(sar > ar){ sh = img.naturalHeight; sw = sh * ar; sx = (img.naturalWidth - sw)/2; sy = 0; }
+        else        { sw = img.naturalWidth;  sh = sw / ar; sx = 0; sy = (img.naturalHeight - sh)/2; }
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+        c.toBlob(b=>{ clearTimeout(done); resolve(b ? URL.createObjectURL(b) : null); }, 'image/png');
+      }catch(e){ clearTimeout(done); resolve(null); }
+    };
+    if(/^https?:\/\//i.test(src) && !src.startsWith(location.origin)) img.crossOrigin = 'anonymous';
+    img.src = src;
+  });
+}
+
+// Measuring via scrollWidth fails here — the composition isn't in the document
+// when it's being laid out, so every measurement comes back 0. Use a canvas
+// context instead, which needs no DOM.
+const _mctx = document.createElement('canvas').getContext('2d');
+function measureText(t, px, family, ls){
+  _mctx.font = '700 ' + px + 'px ' + family;
+  return _mctx.measureText(t).width + (ls || 0) * Math.max(0, t.length - 1);
+}
+function shrinkToFit(el, start, maxw, family, ls){
+  let s = start;
+  const fam = family || 'Anton, Impact, sans-serif';
+  while(s > 32 && measureText(el.textContent, s, fam, ls || 0) > maxw) s -= 2;
+  el.style.fontSize = s + 'px';
+}
+function wrapText(t, px, family, maxw){
+  const words = String(t).split(' ');
+  const out = []; let line = '';
+  for(const w of words){
+    const cand = line ? line + ' ' + w : w;
+    if(measureText(cand, px, family, 0) <= maxw) line = cand;
+    else { if(line) out.push(line); line = w; }
+  }
+  if(line) out.push(line);
+  return out;
+}
+// Japanese has no spaces — break by character instead.
+function wrapCJK(t, px, family, maxw){
+  const out = []; let line = '';
+  for(const ch of String(t)){
+    if(measureText(line + ch, px, family, 0) <= maxw) line += ch;
+    else { if(line) out.push(line); line = ch; }
+  }
+  if(line) out.push(line);
+  return out;
+}
+
+let _grain = null;
+function grainTile(){
+  if(_grain) return _grain;
+  const n = 96, c = document.createElement('canvas');
+  c.width = n; c.height = n;
+  const ctx = c.getContext('2d');
+  const d = ctx.createImageData(n, n);
+  for(let i=0;i<d.data.length;i+=4){
+    const v = 118 + Math.random()*36;
+    d.data[i]=d.data[i+1]=d.data[i+2]=v; d.data[i+3]=255;
+  }
+  ctx.putImageData(d,0,0);
+  _grain = c.toDataURL('image/png');
+  return _grain;
+}
+
+function buildShareNode(y, m, caseNo, yPhotoUrl, mPhotoUrl){
+  const D='Anton, Impact, sans-serif', MO='"Special Elite", monospace',
+        JP='"Shippori Mincho B1", serif', JG='"Zen Kaku Gothic New", sans-serif';
+  const PAPER='#E7E0CE', PAPER2='#DCD3BD', PAPER3='#CBC1AA',
+        INK='#15120E', INK2='#3B342A', INK3='#6B6153', RED='#A93226';
+  const M = 72, COL = 1080 - M*2;
+
+  const n = document.createElement('div');
+  n.setAttribute('data-share','1');
+  n.style.cssText = 'position:relative;width:1080px;height:1920px;overflow:hidden;background:'+PAPER
+    + ';color:'+INK+';font-family:'+D;
+
+  const W_PAGE = 1080;
+  const ctr = (t, top, size, color, ls)=> txt(t,'position:absolute;left:0;top:'+top+'px;width:1080px;text-align:center;color:'+color+';font-size:'+size+'px;letter-spacing:'+ls+'em;text-indent:'+ls+'em');
+  const box = (css)=>{ const d=document.createElement('div'); d.style.cssText=css; n.appendChild(d); return d; };
+  const txt = (t,css)=>{ const d=box(css); d.textContent=t; return d; };
+  const row = (top)=> 'position:absolute;left:'+M+'px;width:'+COL+'px;top:'+top+'px;';
+
+  // grain — painted on a canvas, NOT an SVG data URI.
+  // Safari taints a canvas that has had an SVG drawn into it, which makes the
+  // final toBlob() throw SecurityError ("The operation is insecure").
+  box('position:absolute;inset:0;opacity:.28;mix-blend-mode:multiply;background-repeat:repeat;background-image:url(' + grainTile() + ')');
+
+  // masthead
+  box('position:absolute;left:0;top:0;width:1080px;height:84px;background:'+INK);
+  txt('YŌKAI CONTAINMENT BUREAU  ·  INTERNAL',
+      'position:absolute;left:0;top:27px;width:1080px;text-align:center;color:'+PAPER
+      +';font-size:23px;letter-spacing:.15em;text-indent:.15em');
+
+  // punch holes
+  for(let i=0;i<3;i++) box('position:absolute;left:'+(M+i*46)+'px;top:108px;width:30px;height:13px;border-radius:6px;background:'+PAPER3);
+
+  // form header
+  box(row(146)+'height:3px;background:'+INK);
+  const fields=[['CASE FILE',caseNo],['STATUS','ACTIVE'],['CLEARANCE','CONFIDENTIAL']];
+  fields.forEach((f,i)=>{
+    const x = M + i*(COL/3) + 14;
+    txt(f[0],'position:absolute;left:'+x+'px;top:162px;color:'+INK3+';font-size:17px;letter-spacing:.2em');
+    txt(f[1],'position:absolute;left:'+x+'px;top:188px;color:'+(i?INK:RED)+';font-size:25px;letter-spacing:.09em');
+    if(i) box('position:absolute;left:'+(M+i*(COL/3))+'px;top:154px;width:2px;height:72px;background:#A09680');
+  });
+  box(row(238)+'height:3px;background:'+INK);
+
+  // ── hero: the agent who caught you ──
+  ctr('YOU ARE WANTED BY', 256, 25, RED, .24);
+
+  const PW = 400, PH = 440, px = (1080 - PW) / 2, py = 324;
+  box('position:absolute;left:'+(px-11)+'px;top:'+(py-11)+'px;width:'+(PW+22)+'px;height:'+(PH+22)+'px;background:'+PAPER2+';border:5px solid '+INK);
+  if(mPhotoUrl){
+    const im = document.createElement('img');
+    im.src = mPhotoUrl; im.width = PW; im.height = PH;
+    im.style.cssText = 'position:absolute;left:'+px+'px;top:'+py+'px;width:'+PW+'px;height:'+PH+'px;display:block;filter:grayscale(1) contrast(1.04)';
+    n.appendChild(im);
+  }
+  let yy = py + PH + 48;
+
+  const mn = txt(m.name,'position:absolute;left:'+M+'px;width:'+COL+'px;top:'+yy+'px;text-align:center;font-size:112px;line-height:.92;white-space:nowrap');
+  shrinkToFit(mn, 112, COL, D, 0); yy += 118;
+  txt(m.jp,'position:absolute;left:'+M+'px;width:'+COL+'px;top:'+yy+'px;text-align:center;color:'+INK2+';font-family:'+JG+';font-weight:900;font-size:38px;line-height:1;letter-spacing:.18em;text-indent:.18em');
+  yy += 64;
+
+  const bh = 86;
+  box(row(yy)+'height:'+bh+'px;border:3px solid '+INK);
+  box('position:absolute;left:'+(1080/2-1)+'px;top:'+(yy+10)+'px;width:3px;height:'+(bh-20)+'px;background:#968C76');
+  [['AGENT NO.','#'+m.no],['DIVISION',m.div]].forEach((f,i)=>{
+    const cx = M + COL/4 + i*COL/2;
+    txt(f[0],'position:absolute;left:'+(cx-160)+'px;top:'+(yy+16)+'px;width:320px;text-align:center;color:'+INK3+';font-size:16px;line-height:1;letter-spacing:.2em');
+    const v = txt(f[1],'position:absolute;left:'+(cx-200)+'px;top:'+(yy+42)+'px;width:400px;text-align:center;font-size:29px;line-height:1;letter-spacing:.06em;white-space:nowrap');
+    if(v.scrollWidth > 390) v.style.fontSize = '23px';
+  });
+  yy += bh + 30;
+
+  box(row(yy)+'height:4px;background:'+INK); yy += 11;
+  box(row(yy)+'height:4px;background:'+INK); yy += 34;
+
+  // ── classification: text left, entity mugshot right ──
+  const EW = 248, EH = 331, ex = W_PAGE - M - EW, ey = yy;
+  box('position:absolute;left:'+(ex-9)+'px;top:'+(ey-9)+'px;width:'+(EW+18)+'px;height:'+(EH+18)+'px;background:'+PAPER2+';border:4px solid '+INK);
+  if(yPhotoUrl){
+    const im2 = document.createElement('img');
+    im2.src = yPhotoUrl; im2.width = EW; im2.height = EH;
+    im2.style.cssText = 'position:absolute;left:'+ex+'px;top:'+ey+'px;width:'+EW+'px;height:'+EH+'px;display:block;filter:grayscale(1) contrast(1.04)';
+    n.appendChild(im2);
+  }
+
+  const LW = ex - M - 34;
+  let ly = ey + 4;
+  txt('ENTITY CLASSIFICATION','position:absolute;left:'+M+'px;top:'+ly+'px;width:'+LW+'px;color:'+RED+';font-size:23px;letter-spacing:.24em');
+  ly += 46;
+  const yn = txt(y.name,'position:absolute;left:'+M+'px;top:'+ly+'px;width:'+LW+'px;font-size:72px;line-height:.94;white-space:nowrap');
+  shrinkToFit(yn, 72, LW, D, 0); ly += 78;
+  txt(y.jp,'position:absolute;left:'+M+'px;top:'+ly+'px;width:'+LW+'px;font-family:'+JP+';font-weight:800;font-size:34px;letter-spacing:.16em');
+  ly += 60;
+  const tr = txt(y.trait.toUpperCase(),'position:absolute;left:'+M+'px;top:'+ly+'px;width:'+LW+'px;font-size:22px;letter-spacing:.09em;line-height:1.25');
+  if(tr.scrollHeight > 34) ly += 58; else ly += 36;
+  wrapText(y.short || y.desc, 24, MO, LW).forEach(ln=>{
+    txt(ln,'position:absolute;left:'+M+'px;top:'+ly+'px;width:'+LW+'px;color:'+INK2+';font-family:'+MO+';font-size:24px;line-height:1.4;white-space:nowrap');
+    ly += 34;
+  });
+  if(y.shortJp){
+    ly += 8;
+    wrapCJK(y.shortJp, 21, JG, LW).forEach(ln=>{
+      txt(ln,'position:absolute;left:'+M+'px;top:'+ly+'px;width:'+LW+'px;color:'+INK3+';font-family:'+JG+';font-weight:500;font-size:21px;line-height:1.5;white-space:nowrap');
+      ly += 31;
+    });
+  }
+  yy = Math.max(ey + EH, ly) + 24;
+
+  // stamp
+  const st = txt('CASE FILE OPEN','position:absolute;left:0;top:1552px;width:1080px;text-align:center');
+  st.innerHTML = '<span style="display:inline-block;border:6px solid '+RED+';color:'+RED
+    +';padding:14px 28px 10px;font-size:40px;letter-spacing:.09em;transform:rotate(-5deg);opacity:.9">CASE FILE OPEN</span>';
+
+  // footer
+  box(row(1706)+'height:4px;background:'+INK);
+  txt('TRANSLATE  ·  OUT NOW','position:absolute;left:0;top:1736px;width:1080px;text-align:center;font-size:34px;letter-spacing:.12em;text-indent:.12em');
+  txt(SHARE_URL.toUpperCase(),'position:absolute;left:0;top:1790px;width:1080px;text-align:center;color:'+INK2+';font-family:'+MO+';font-size:24px;letter-spacing:.08em');
+  txt('#ONEOREIGHT','position:absolute;left:0;top:1830px;width:1080px;text-align:center;color:'+RED+';font-size:25px;letter-spacing:.16em;text-indent:.16em');
+
+  return n;
+}
+
+async function renderShareImage(){
+  if(typeof html2canvas !== 'function') throw new Error('Share helper failed to load. Please refresh.');
+  const y = YOKAI[lastResult.yid], m = MEMBERS[lastResult.mid];
+  if(!y || !m) throw new Error('No result to share yet.');
+
+  const [yPhoto, mPhoto] = await Promise.all([
+    bakePhoto(y.photo, 396, 440),
+    bakePhoto(m.photo, 396, 440)
+  ]);
+  const host = document.createElement('div');
+  host.style.cssText = 'position:fixed;left:-99999px;top:0;width:1080px;height:1920px;overflow:hidden;z-index:-1;pointer-events:none';
+  const node = buildShareNode(y, m, ($('#caseNo').textContent || '#44322').replace('#',''), yPhoto, mPhoto);
+  host.appendChild(node);
+  document.body.appendChild(host);
+
+  try{
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+    await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+    const canvas = await html2canvas(node, {
+      width:1080, height:1920, scale:1, backgroundColor:'#E7E0CE',
+      useCORS:true, allowTaint:false, logging:false, imageTimeout:9000
+    });
+    return await new Promise((res,rej)=>{
+      try{
+        canvas.toBlob(b=> b ? res(b) : rej(new Error('Could not encode the image.')), 'image/png');
+      }catch(err){
+        // SecurityError: something in the composition tainted the canvas
+        rej(new Error('Could not encode the image on this browser. Try the Download button, or use Chrome.'));
+      }
+    });
+  } finally {
+    host.remove();
+    [yPhoto, mPhoto].forEach(u=>{ if(u) { try{ URL.revokeObjectURL(u); }catch(e){} } });
+  }
+}
+
+function shareCaption(platform){
+  const y = YOKAI[lastResult.yid], m = MEMBERS[lastResult.mid];
+  if(!y || !m) return '';
+  const tags = {
+    ig:'#ONEOREIGHT #TRANSLATE #ENGINE #1OR8',
+    x :'#ONEOREIGHT #TRANSLATE',
+    tt:'#oneoreight #translate #yokai #fyp'
+  }[platform] || '#ONEOREIGHT #TRANSLATE';
+  return 'Classified as ' + y.name + '. Apprehended by ' + m.name + '. ★\n'
+       + 'Find out which yōkai you are — ' + SHARE_URL + '\n'
+       + 'TRANSLATE out now\n' + tags;
+}
+
+function downloadBlob(blob, name){
+  const u = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = u; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u), 5000);
+}
+
+async function doShare(platform, btn){
+  const label = { ig:'Instagram', x:'X', tt:'TikTok', dl:'Download' }[platform] || platform;
+  const old = btn ? btn.textContent : '';
+  if(btn){ btn.disabled = true; btn.textContent = 'Rendering…'; }
+  let blob;
+  try{
+    blob = await renderShareImage();
+  }catch(err){
+    console.error('[share]', err);
+    shareToast(err.message || 'Could not create the image.');
+    if(btn){ btn.disabled=false; btn.textContent=old; }
+    return;
+  }
+  if(btn){ btn.disabled=false; btn.textContent=old; }
+
+  const name = 'translate-' + lastResult.yid + '-' + lastResult.mid + '.png';
+  const caption = shareCaption(platform);
+  showCard(blob, name, caption, platform);
+}
+
+// Shows the rendered card so the user can see it, then share or save from there.
+// Long-press on the image saves it on any phone, which is the one route that
+// always works regardless of browser support or sandboxing.
+let cardState = null;
+function showCard(blob, name, caption, platform){
+  if(cardState && cardState.url) { try{ URL.revokeObjectURL(cardState.url); }catch(e){} }
+  const url = URL.createObjectURL(blob);
+  cardState = { blob, name, caption, platform, url };
+  $('#cardImg').src = url;
+  const canNative = !!(navigator.canShare && navigator.share);
+  $('#cardHint').textContent = canNative
+    ? 'Tap Share to post it, or press and hold the image to save.'
+    : 'Press and hold the image to save it, or use Save image below.';
+  $('#cardShare').style.display = canNative ? '' : 'none';
+  $('#cardwrap').classList.add('on');
+}
+
+$('#cardClose').addEventListener('click', ()=> $('#cardwrap').classList.remove('on'));
+$('#cardwrap').addEventListener('click', e=>{ if(e.target.id === 'cardwrap') $('#cardwrap').classList.remove('on'); });
+$('#cardSave').addEventListener('click', async ()=>{
+  if(!cardState) return;
+  downloadBlob(cardState.blob, cardState.name);
+  let copied = false;
+  try{ await navigator.clipboard.writeText(cardState.caption); copied = true; }catch(e){}
+  shareToast('Image saved' + (copied ? ' & caption copied' : '') + '.');
+});
+$('#cardShare').addEventListener('click', ()=> nativeShare());
+
+async function nativeShare(){
+  if(!cardState) return;
+  const { blob, name, caption, platform } = cardState;
+  const file = new File([blob], name, { type:'image/png' });
+  if(navigator.canShare && navigator.canShare({ files:[file] }) && navigator.share){
+    try{
+      await navigator.share({ files:[file], text:caption, title:'TRANSLATE' });
+      $('#cardwrap').classList.remove('on');
+      return;
+    }catch(err){
+      if(err && (err.name === 'AbortError' || /abort|cancel/i.test(err.message||''))) return;
+    }
+  }
+
+  // desktop / unsupported
+  downloadBlob(blob, name);
+  let copied = false;
+  try{ await navigator.clipboard.writeText(caption); copied = true; }catch(e){}
+  if(platform === 'x'){
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(caption), '_blank', 'noopener');
+    shareToast('Image saved' + (copied ? ' & caption copied' : '') + '.\nX is open — attach the image.', 5200);
+  } else {
+    shareToast('Image saved' + (copied ? ' & caption copied' : '') + '.\nOpen ' + label + ' and upload it.', 5200);
+  }
+}
+
+document.querySelectorAll('[data-sh]').forEach(b=>{
+  b.addEventListener('click', ()=> doShare(b.dataset.sh, b));
+});
+
+// Posting straight to a social app needs Web Share Level 2, which only exists
+// on mobile. On desktop those buttons would just download a file and confuse
+// people, so hide them there and leave Download as the single clear action.
+(function shareButtonsForPlatform(){
+  let f;
+  try { f = new File([new Blob([''])], 't.png', { type:'image/png' }); } catch(e){ f = null; }
+  const native = !!(navigator.share && navigator.canShare && f && navigator.canShare({ files:[f] }));
+  if(native) return;
+  ['ig','x','tt'].forEach(k=>{
+    const b = document.querySelector('[data-sh="'+k+'"]');
+    if(b) b.style.display = 'none';
+  });
+  const sub = $('#shareSub');
+  if(sub) sub.textContent = 'Save your case file, then post it and tag the agent assigned to you.';
+})();
+
+</script>
+</body>
+</html>
